@@ -1,13 +1,20 @@
-{% extends "OCPlatformBundle::layout.html.twig" %}
+{% extends "TPCoreBundle::layout.html.twig" %}
 
 {% block title %}
-    Accueil - {{ parent() }}
+    Home Page
 {% endblock %}
 
-{% block ocplatform_body %}
+{% block body %}
 
-    <h2>Liste des annonces</h2>
+    {# On définit un sous-titre commun à toutes les pages du bundle, par exemple #}
+    <h1>Bienvenue sur votre page d'acceuil </h1>
+    <hr>
+    {% for message in app.session.flashbag.get('message') %}
 
+        <p class="alert alert-warning">{{ message }}</p>
+    {% endfor %}
+
+    <h2>Liste des dernieres annonces</h2>
     <ul>
         {% for advert in listAdverts %}
             <li>
@@ -21,5 +28,6 @@
             <li>Pas (encore !) d'annonces</li>
         {% endfor %}
     </ul>
+
 
 {% endblock %}
